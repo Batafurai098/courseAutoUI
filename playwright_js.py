@@ -11,7 +11,7 @@ with sync_playwright() as playwright:
 
     page.evaluate(
         """
-        const title = document.getElementByID('authentication-ui-course-title-text')
+        const title = document.getElementById('authentication-ui-course-title-text')
         title.textContent = 'New Text'
         """
     )
