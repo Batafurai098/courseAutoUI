@@ -6,7 +6,7 @@ def log_request(request: Request):
 
 
 def log_response(response: Response):
-    print(f"Response: {response.url}")
+    print(f"Response: {response.url}, {response.status}")
 
 
 with sync_playwright() as playwright:
@@ -14,6 +14,7 @@ with sync_playwright() as playwright:
     page = browser.new_page()
 
     page.on("request", log_request)
+    page.remove_listener("request", log_request)
     page.on("response", log_response)
 
     # Переходим на страницу входа
