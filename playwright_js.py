@@ -9,11 +9,15 @@ with sync_playwright() as playwright:
         wait_until='networkidle'
     )
 
+    new_text = 'New Text'
     page.evaluate(
         """
+        (text) => {
         const title = document.getElementById('authentication-ui-course-title-text')
-        title.textContent = 'New Text'
-        """
+    title.textContent = text
+}
+        """,
+        new_text
     )
 
     page.wait_for_timeout(5000)
